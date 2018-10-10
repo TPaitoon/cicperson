@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+
+    <meta http-equiv="content-Type" content="charset=utf-8" />
+    <script src="/socket.io/socket.io.js"></script>
+   <script src="/jquery/jquery.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.min.css" />
+   <script src="/js/bootstrap.min.js"></script>
+   <style type="text/css">
+      .container{
+        margin-top: 50px;
+      }
+   </style>
+    
+  </head>
+  <body>
+    <script>
+      var socket = io.connect();
+           socket.on('message', function(data){
+           console.log(data.empno);
+           $("#empno").html(data.empno);
+           $("#empname").html(data.empname);
+           $("#empdept").html(data.empdept);
+           $("#emppos").html(data.emppos);
+        });
+    </script>
+    
+ 
+        <div style="text-align: center">
+        <img src="http://localhost:8001/userlogo.png" />
+       </div>
+      <div class="btn btn-success">OKKK</div>
+    
+        <div style="margin-top: 10px;margin-bottom: 15px"><h1>ข้อมูลพนักงาน</h1></div>
+                <table class="table">
+                    <tr style="vertical-align: middle"><td style="text-align: right;width: 20%"><h3>รหัสพนักงาน</h3></td><td><div id="empno"></div></td></tr>
+                    <tr><td style="text-align: right;width: 20%"><h3>ชื่อ</h3></td><td><div id="empname"></div></td></tr>
+                    <tr><td style="text-align: right;width: 20%"><h3>ฝ่าย</h3></td><td><div id="empdept"></div></td></tr>
+                    <tr><td style="text-align: right;width: 20%"><h3>ตำแหน่ง</h3></td><td><div id="emppos"></div></td></tr>
+                </table>
+   
+    
+    
+  </body>
+</html>

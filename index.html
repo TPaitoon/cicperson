@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1,firefox=1">
+    <title>Camel Empinfo</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div id="welcome" class="row">
+            <div class="col-lg-12">
+                <div style="text-align: center;margin-top: 10px">
+                    <img src="/img/camellogo.jpg" alt="logo" style="width: 30%;">
+                </div>
+                <h1 style="color: blue;font-size: 50px;text-align: center;font-weight: bold">
+                    บริษัท อุตสาหกรรมตราอูฐ จำกัด
+                </h1>
+                <br>
+                <h1 style="color:black;font-size:40px;text-align:left" id="res">
+                    "เรามุ่งมั่นที่จะผลิตยางด้วยระบบคุณภาพ ตามมาตรฐาน ISO 9001
+                    เพื่อเพิ่มความพึงพอใจให้กับลูกค้า
+                    ตลอดจนให้พนักงานทุกคนมีส่วนร่วมในการปรับปรุงระบบบริหารงานคุณภาพอย่างต่อเนื่อง"
+                </h1>
+                <br>
+                <h1 id="res" style="color:red;font-size: 60px;text-align: center">
+                    กรุณาแตะบัตรพนักงาน !
+                </h1>
+            </div>
+        </div>
+
+        <!-- MODAL -->
+        <div id="finger-modal" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>ป้อนรหัสลับ</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="display:none">
+                            <div class="col-md-6">
+                                <img src="/img/fing-scan2.gif" alt="scan">
+                            </div>
+                            <div class="col-md-6">
+                                <div id="countno" style="font-size: 24px;color:green">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="alerterror" class="alert alert-danger" style="display:none">
+                            <h3>รหัสผ่านไม่ถูกต้อง</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
