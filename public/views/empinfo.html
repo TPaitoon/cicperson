@@ -4,6 +4,18 @@
         $("#tablebenefits tbody>tr").remove()
         $("#alerterror").hide()
     })
+
+    $("#exit").click(() => {
+        status = 0
+        socket.emit('exitapp', {
+            isexit: true
+        })
+        $("#welcome").show()
+        $("#empinfo").hide()
+        $("#finger-modal").modal("hide")
+        $("#empdetail").hide()
+        location.reload()
+    })
 </script>
 
 <div id="empinfo" style="display:none" class="row">

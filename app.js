@@ -94,7 +94,6 @@ app.get('/verifycode', (req, res) => {
                                     'emphot': crecset['recordset'][0].PRS_SC_HSTAL,
                                     'emptype': crecset['recordset'][0].Emp_type
                                 }]
-                                console.table(vresult)
                                 res.send(vresult)
                             })
                         }
@@ -115,7 +114,7 @@ app.get('/train', (req, res) => {
                 if (recset['recordset'][0].COUNT > 0) {
                     request.query('SELECT * FROM USRN_Training_summary WHERE PRS_NO=' + foremp, (err, crecset) => {
                         if (err) return console.log("Empty Data in Database")
-                        for (let i = 0; i < crecset.length - 1; i++) {
+                        for (let i = 0; i <= crecset['recordset'].length - 1; i++) {
                             vresult.push({
                                 'cid': crecset['recordset'][i].Course_ID,
                                 'cname': crecset['recordset'][i].Course_Name
@@ -183,6 +182,7 @@ app.get('/holiday', (req, res) => {
                 if (recset['recordset'][0].COUNT > 0) {
                     request.query('select Emp_holiday.PRS_NO,Emp_holiday.holiday,SUM(qry_personal_leave_summary.amt) as amt from Emp_holiday INNER JOIN qry_personal_leave_summary ON Emp_holiday.PRS_NO = qry_personal_leave_summary.PRS_NO WHERE (dbo.Emp_holiday.PRS_NO = ' + foremp + ') AND (dbo.qry_personal_leave_summary.TMP_STT = 8) AND (dbo.qry_personal_leave_summary.Year = ' + n + ') GROUP BY Emp_holiday.PRS_NO,Emp_holiday.holiday', (err, crecset) => {
                         if (err) return console.log("Empty Data in Database")
+
                         for (let i = 0; i < crecset.length - 1; i++) {
                             vresult.push({
                                 'holiday_amt': crecset['recordset'][i].holiday,
@@ -196,7 +196,7 @@ app.get('/holiday', (req, res) => {
         })
     }
 })
-app.get('/benefit', (req, res) => {
+/*app.get('/benefit', (req, res) => {
     let vresult = []
     MongoClient.connect(dbUrl, {
         useNewUrlParser: true
@@ -208,7 +208,7 @@ app.get('/benefit', (req, res) => {
             res.send(result)
         })
     })
-})
+})*/
 
 /* Config Function */
 const checkpwd = (empno, pwd) => {
@@ -293,7 +293,7 @@ serialport.on('data', (data) => {
         Buffer = ""
         //console.log(empno)
         if (empno !== "" && empno.toString().length == 7) {
-            console.log(empno)
+            //console.log(empno)
             let con = new Sql.ConnectionPool(dbconfig, (err) => {
                 let request = new Sql.Request(con)
                 request.query('SELECT COUNT(*) as COUNT FROM qry_EmpInfo WHERE PRS_NO=' + empno, (err, recset) => {

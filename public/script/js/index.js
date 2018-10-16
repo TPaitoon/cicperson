@@ -2,22 +2,22 @@ $("#empdetailinclude").load('/views/empdetail.html')
 $("#empinfoinclude").load('/views/empinfo.html')
 
 let socket = io.connect('http://localhost:8001')
-var status = 0
+/* var status = 0 */
 socket.on('message', (data) => {
-    if (status == 0) {
+    /*if (status == 0) {
         console.table(data)
         status = 1
-    }
+    }*/
     $("#empno").html(data.empno)
     $("#empname").html(data.empname)
     $("#empdept").html(data.empdept)
     $("#emppos").html(data.emppos)
     $("#emp_photo").attr('src', 'http://172.16.0.201:86/' + data.empno + '.jpg')
     if (data.empno !== "") {
-        if (status == 1) {
+        /* if (status == 1) {
             console.table(data)
             status = 2
-        }
+        } */
         $("#empinfo").fadeIn(1000)
         $("#welcome").hide()
         $("#empdetail").hide()
@@ -36,18 +36,6 @@ $(() => {
     let empmonth = ""
     //let keys = ""
     $("#empdetail").hide()
-
-    $("#exit").click(() => {
-        status = 0
-        socket.emit('exitapp', {
-            isexit: true
-        })
-        $("#welcome").show()
-        $("#empinfo").hide()
-        $("#finger-modal").modal("hide")
-        $("#empdetail").hide()
-        location.reload()
-    })       
 
     // Evet Key Bindings
     $("#7").click(() => {
@@ -96,7 +84,7 @@ $(() => {
             success: (data) => {
                 if (data.length > 0) {
                     socket.emit('codesuccess', {})
-                    console.table(data,'eeeee')
+                    /* console.table(data) */
                     $("#empinfo").hide();
                     $("#empdetail").fadeIn(3000);
                     $("#finger-modal").modal("hide")
@@ -111,7 +99,7 @@ $(() => {
                     empmonth = data[0].workmonth
                     $("#workyear").html(data[0].workyear + " ปี " + (data[0].workmonth %
                         12) + " เดือน")
-                    $("#hot").html('โรงพยาบาล' + data[0].emphot)
+                    $("#hot").html('รพ. ' + data[0].emphot)
                     $("#emptype").html(data[0].emptype)
                 } else {
                     setTimeout(() => {

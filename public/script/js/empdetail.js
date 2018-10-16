@@ -67,7 +67,13 @@ $("#hol").click(() => {
                     }
                 }
             } else {
-                alert("ไม่สามารถลาพักร้อนได้เนื่องจากอายุงานยังไม่ถึง 3 ปี")
+                //alert("ไม่สามารถลาพักร้อนได้เนื่องจากอายุงานยังไม่ถึง 3 ปี")
+                $("#tableholiday tbody>tr").remove()
+                $("#tableholiday tbody").append('<tr class="txtdata2">' +
+                    '<td>' + 'อายุงานไม่ถึง 3 ปี' + '</td>' +
+                    '<td><h3 style="color: red"><u>' + 0 +
+                    '</u></h3></td>' +
+                    '</tr>')
             }
         },
         error: (data) => {
@@ -156,9 +162,9 @@ $("#benefit").click(() => {
                 alert("ไม่พบข้อมูล")
             }
         },
-        error: (data) => {
+        /*error: (data) => {
             alert()
-        }
+        }*/
     })
 })
 
@@ -180,7 +186,12 @@ $("#train").click(() => {
                         '</tr>')
                 }
             } else {
-                alert("ไม่มีประวัติการฝึกอบรม ...")
+                //alert("ไม่มีประวัติการฝึกอบรม ...")
+                $("#tabletrain tbody>tr").remove()
+                $("#tabletrain tbody").append('<tr class="txtdata2">' +
+                    '<td>' + "CO000000" + '</td>' +
+                    '<td>' + 'ไม่พบประวัติการฝึกอบรม' + '</td>' +
+                    '</tr>')
             }
         },
         error: (data) => {
