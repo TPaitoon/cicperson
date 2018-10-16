@@ -1,0 +1,127 @@
+<script>
+    $("#closeapp").click(() => {
+        status = 0
+        socket.emit('exitapp', {
+            isexit: true
+        })
+        $("#welcome").show()
+        $("#empinfo").hide()
+        $("#finger-modal").modal("hide")
+        $("#empdetail").hide()
+        location.reload()
+    })
+    $("#evtinclude").load('/views/page/evt.html')
+</script>
+<style>
+    .txtdata {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div id="empdetail" style="display:none" class="row">
+    <div id="" class="row" style="padding-top:25px">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 id="empno2">ข้อมูลพนักงาน</h2>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="float-right">
+                                <a id="closeapp" class="btn btn-warning" href="#">
+                                    <h2>จบการทำงาน</h2>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="panel-body">
+                    <table class="table-borderless">
+                        <tr>
+                            <td class="txttitle" style="text-align: right;width: 20%; padding-right: 10px;">ชื่อ -
+                                นามสกุล
+                            </td>
+                            <td id="fullname" class="txtdata2"></td>
+                            <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">สถานะ</td>
+                            <td id="empstatus" class="txtdata2"></td>
+                            <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">แผนก</td>
+                            <td id="dept" class="txtdata2"></td>
+                        </tr>
+                        <tr>
+                            <td class="txttitle" style="text-align: right;width: 20%; padding-right: 10px;">ฝ่าย</td>
+                            <td id="sec" class="txtdata2"></td>
+                            <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">ตำแหน่ง</td>
+                            <td id="pos" class="txtdata2"></td>
+                            <td class="txttitle" style="text-align: right;width: 20%;padding-right:10px;">รหัสพนักงาน</td>
+                            <td id="empnoo" class="txtdata2"></td>
+                        </tr>
+                        <tr>
+                            <td class="txttitle" style="text-align: right;width: 20%; padding-right: 10px;">เริ่มงาน
+                            </td>
+                            <td id="stdate" class="txtdata2"></td>
+                            <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">อายุงาน</td>
+                            <td id="workyear" class="txtdata2"></td>
+                            <td id="emptype" class="txtdata2">
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs txtdata">
+                <li class="nav-item" id="evt">
+                    <a class="nav-link" href="#event-tab" data-toggle="tab">ข้อมูลลา</a>
+                </li>
+                <li class="nav-item" id="hol">
+                    <a class="nav-link" href="#holiday" data-toggle="tab">พักร้อน</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#exc" data-toggle="tab">ค่าพิเศษ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#slip" data-toggle="tab">สลิป</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#hotpital" data-toggle="tab">สถานพยาบาล</a>
+                </li>
+                <li class="nav-item" id="train">
+                    <a class="nav-link" href="#trainning" data-toggle="tab">ฝึกอบรม</a>
+                </li>
+                <li class="nav-item" id="benefit">
+                    <a class="nav-link" href="#benefits" data-toggle="tab">เงินกู้สวัสดิการ</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-12">
+            <div class="tab-content">
+                <div class="tab-pane" id="event-tab">
+                    <div id="evtinclude"></div>
+                </div>
+                <div class="tab-pane" id="holiday">
+                    <div id="holinclude"></div>
+                </div>
+                <div class="tab-pane" id="exc">
+                    <div class="panel panel-body">Loading</div>
+                </div>
+                <div class="tab-pane" id="slip">
+                    <div class="panel panel-body">Loading</div>
+                </div>
+                <div class="tab-pane" id="hotpital">
+                    <div id="hotinclude"></div>
+                </div>
+                <div class="tab-pane" id="trainning">
+                    <div id="traininclude"></div>
+                </div>
+                <div class="tab-pane" id="benefits">
+                    <div id="beneinclude"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/script/js/empdetail.js"></script>

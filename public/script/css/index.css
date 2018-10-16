@@ -1,0 +1,28 @@
+.container {
+    top: 300px;
+}
+
+.titldata {
+    color: #0099FF;
+    text-align: left;
+    font-size: 25px;
+}
+
+.txttitle {
+    font-size: 20px;
+}
+
+.txtdata {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.txtdata2 {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.txtdata3 {
+    font-size: 50px;
+    font-weight: bold;
+}

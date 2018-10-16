@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1,firefox=1">
     <title>Camel Empinfo</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/jquery/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/func/js/index.js"></script>
-    <script src="/func/css/index.css"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/script/css/index.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script src="/jquery/jquery.js"></script>
+    <script>
+        $("#empinfoinclude").load('/views/employeeinfo.html')
+    </script>
 </head>
 
 <body>
@@ -39,233 +39,103 @@
         </div>
 
         <!-- MODAL -->
-        <span id="passwordinclude"></span>
-
-        <!-- EMPLOYEE DETAIL -->
-        <div id="empdetail">
-            <div id="" class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h2 id="empno2">ข้อมูลพนักงาน</h2>
+        <div id="finger-modal" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>ป้อนรหัสลับ</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="display:none">
+                            <div class="col-md-6">
+                                <img src="/img/fing-scan2.gif" alt="scan">
+                            </div>
+                            <div class="col-md-6">
+                                <div id="countno" style="font-size: 24px;color:green">
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="pull-right">
-                                        <a id="closeapp" class="btn btn-warning" href="#">
-                                            <h2>จบการทำงาน</h2>
-                                        </a>
+                            </div>
+                        </div>
+                        <div id="alerterror" class="alert alert-danger" style="display:none">
+                            <h3>รหัสผ่านไม่ถูกต้อง</h3>
+                        </div>
+                        <div class="row" style="text-align: center">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input type="password" name="" id="" class="form-control passwordkey" style="font-size: 40px;height: 60px;text-align: center"
+                                        readonly>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default txtclear" type="button" style="font-size: 20px;height: 60px">ลบ</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="7" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>7</h1>
+                                    </div>
+                                    <div id="8" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>8</h1>
+                                    </div>
+                                    <div id="9" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>9</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="4" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>4</h1>
+                                    </div>
+                                    <div id="5" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>5</h1>
+                                    </div>
+                                    <div id="6" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>6</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="1" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>1</h1>
+                                    </div>
+                                    <div id="2" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>2</h1>
+                                    </div>
+                                    <div id="3" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>3</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-lg-12">
+                                    <div id="0" class="btn btn-default" style="width: 130px; margin: 10px">
+                                        <h1>0</h1>
+                                    </div>
+                                    <div id="ok" class="btn btn-primary" style="width: 300px; margin: 10px">
+                                        <h1>ตกลง</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <table boder="1">
-                                <tr>
-                                    <td class="txttitle" style="text-align: right;width: 15%; padding-right: 10px;">ชื่อ
-                                        - นามสกุล</td>
-                                    <td id="fullname" class="txtdata2"></td>
-                                    <td class="txttitle" style="text-align: right;width: 15%;padding-right: 10px;">สถานะ</td>
-                                    <td id="empstatus" class="txtdata2"></td>
-                                    <td class="txttitle" style="text-align: right;width: 15%;padding-right: 10px;">แผนก</td>
-                                    <td id="dept" class="txtdata2"></td>
-                                </tr>
-                                <tr>
-                                    <td class="txttitle" style="text-align: right;width: 20%; padding-right: 10px;">ฝ่าย</td>
-                                    <td id="sec" class="txtdata2"></td>
-                                    <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">ตำแหน่ง</td>
-                                    <td id="pos" class="txtdata2"></td>
-                                </tr>
-                                <tr>
-                                    <td class="txttitle" style="text-align: right;width: 20%; padding-right: 10px;">เริ่มงาน</td>
-                                    <td id="stdate" class="txtdata2"></td>
-                                    <td class="txttitle" style="text-align: right;width: 20%;padding-right: 10px;">อายุงาน</td>
-                                    <td id="workyear" class="txtdata2"> </td>
-                                    <td id="emptype" class="txtdata2">
-                        </div>
-                        </tr>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="nav nav-tabs txtdata">
-                    <li role="presentation" id="evt" class="active"><a href="#event-tab" role="tab" data-toggle="tab">ข้อมูลลา</a></li>
-                    <li role="presentation" id="hol"><a href="#holiday" role="tab" data-toggle="tab">พักร้อน</a></li>
-                    <li role="presentation"><a href="#exc" role="tab" data-toggle="tab">ค่าพิเศษ</a></li>
-                    <li role="presentation"><a href="#slip" role="tab" data-toggle="tab">สลิป</a></li>
-                    <li role="presentation"><a href="#hotpital" role="tab" data-toggle="tab">สถานพยาบาล</a></li>
-                    <li role="presentation" id="train"><a href="#trainning" role="tab" data-toggle="tab">ฝึกอบรม</a></li>
-                    <li role="presentation" id="benefit"><a href="#benefits" role="tab" data-toggle="tab">เงินกู้สวัสดิการ</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="event-tab">
 
-                        <div style="text-align: center">
-                            <h3 style="color: green;text-align: center">สรุปวันขาด ลา มาสาย ประจำปี <span class="leave_year"></span></h3>
-                        </div>
+        <!-- EMPLOYEE DETAIL -->
+        <div id="empdetailinclude"></div>
 
-                        <div class="panel-body">
-                            <table id="tableevent" class="table table-bordered">
-                                <thead>
-                                    <tr class="txtdata2">
-                                        <th>
-                                            รายการ
-                                        </th>
-                                        <th>
-                                            จำนวน
-                                        </th>
-                                    </tr>
-                                    </thea>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="holiday">
-                        <div class="panel panel-body">
-                            <div style="text-align: center">
-                                <h3 style="color: green;text-align: center">สรุปวันพักร้อน ประจำปี <span class="leave_year"></span></h3>
-                            </div>
-                            <table id="tableholiday" class="table table-bordered">
-                                <thead>
-                                    <tr class="txtdata2">
-                                        <th>
-                                            รายการ
-                                        </th>
-                                        <th>
-                                            จำนวน(วัน)
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="exc">
-                        <div class="panel panel-body">
-                            Loading
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="slip">
-                        <div class="panel panel-body">
-                            Loading
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="hotpital">
-                        <div class="panel panel-body">
-                            <div id="hot" class="txtdata3" style="text-align: center;"></div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="trainning">
-                        <div class="panel panel-body">
-                            <table id="tabletrain" class="table">
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="benefits">
-                        <div class="panel panel-body">
-                            <table id="tablebenefits" class="table">
-                                <thead>
-                                    <tr>
-                                        <td>ลำดับ</td>
-                                        <td>ตั้งแต่</td>
-                                        <td>ถึง</td>
-                                        <td>รายวัน</td>
-                                        <td>คืน/วิค</td>
-                                        <td>รายเดือน</td>
-                                        <td>คืน</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="empinfo" style="display:none" class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div style="text-align: center">
-                            <img id="emp_photo" style="width: 380px;height: 300px" class="img-circle" /></div>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-lg-12" style="text-align: center">
-                        <!-- <div style="margin-top: 10px;margin-bottom: 15px"><h1>ข้อมูลพนักงาน</h1></div> -->
-                        <table class="table">
-                            <tr style="vertical-align: middle">
-                                <td style="text-align: right;width: 40%">
-                                    <h3 class="txttitle">รหัสพนักงาน</h3>
-                                </td>
-                                <td>
-                                    <h3>
-                                        <div class="titldata" id="empno"></div>
-                                    </h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: right;width: 40%">
-                                    <h3 class="txttitle">ชื่อ</h3>
-                                </td>
-                                <td>
-                                    <h3>
-                                        <div class="titldata" id="empname"></div>
-                                    </h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: right;width: 40%">
-                                    <h3 class="txttitle">ฝ่าย</h3>
-                                </td>
-                                <td>
-                                    <h3>
-                                        <div class="titldata" id="empdept"></div>
-                                    </h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: right;width: 40%">
-                                    <h3 class="txttitle">ตำแหน่ง</h3>
-                                </td>
-                                <td>
-                                    <h3>
-                                        <div class="titldata" id="emppos"></div>
-                                    </h3>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="pull-left" style="padding-left: 15px;">
-                            <a id="showdetail" class="btn btn-success" href="#" data-toggle="modal" data-target="#finger-modal">
-                                <h3 class="txttitle">ขอมูลเพิ่มเติม</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="pull-right" style="padding-right: 15px;">
-                            <a id="exit" class="btn btn-danger" href="">
-                                <h3 class="txttitle">ออกจากระบบ</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- EMPLOYEE INFO -->
+        <div id="empinfoinclude"></div>
+
+        <!--object type="text/html" data="/views/employeedetail.html"></object-->
+
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/script/js/index.js"></script>
 </body>
 
 </html>
