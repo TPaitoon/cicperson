@@ -183,7 +183,7 @@ app.get('/holiday', (req, res) => {
                     request.query('select Emp_holiday.PRS_NO,Emp_holiday.holiday,SUM(qry_personal_leave_summary.amt) as amt from Emp_holiday INNER JOIN qry_personal_leave_summary ON Emp_holiday.PRS_NO = qry_personal_leave_summary.PRS_NO WHERE (dbo.Emp_holiday.PRS_NO = ' + foremp + ') AND (dbo.qry_personal_leave_summary.TMP_STT = 8) AND (dbo.qry_personal_leave_summary.Year = ' + n + ') GROUP BY Emp_holiday.PRS_NO,Emp_holiday.holiday', (err, crecset) => {
                         if (err) return console.log("Empty Data in Database")
 
-                        for (let i = 0; i < crecset.length - 1; i++) {
+                        for (let i = 0; i <= crecset['recordset'].length - 1; i++) {
                             vresult.push({
                                 'holiday_amt': crecset['recordset'][i].holiday,
                                 'amt': crecset['recordset'][i].amt
@@ -276,7 +276,7 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'))
 //app.use('/photo', express.static(__dirname + 'http://172.16.0.201:86'))
 
 /* Config SerialPort */
-const serialport = new SerialPort(portconnect(1, 3), {
+const serialport = new SerialPort(portconnect(0, 3), {
     baudRate: 9600,
     parser: SerialPort.parsers.Readline
 })

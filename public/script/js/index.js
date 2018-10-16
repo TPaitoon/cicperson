@@ -18,6 +18,7 @@ socket.on('message', (data) => {
             status = 2
         } */
         //$("#emp_photo").attr('src', 'http://172.16.0.201:86/' + data.empno + '.jpg')
+        $("#emp_photo").attr('src', '')
         $("#empinfo").fadeIn(1000)
         $("#welcome").hide()
         $("#empdetail").hide()

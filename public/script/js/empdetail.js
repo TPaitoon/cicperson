@@ -67,7 +67,7 @@ $("#hol").click(() => {
                     }
                 }
             } else {
-                alert("ไม่สามารถลาพักร้อนได้เนื่องจากอายุงานยังไม่ถึง 3 ปี")
+                //alert("ไม่สามารถลาพักร้อนได้เนื่องจากอายุงานยังไม่ถึง 3 ปี")
                 $("#tableholiday tbody>tr").remove()
                 $("#tableholiday tbody").append('<tr class="txtdata2">' +
                     '<td>' + 'อายุงานไม่ถึง 3 ปี' + '</td>' +
