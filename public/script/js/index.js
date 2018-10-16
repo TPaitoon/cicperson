@@ -12,12 +12,12 @@ socket.on('message', (data) => {
     $("#empname").html(data.empname)
     $("#empdept").html(data.empdept)
     $("#emppos").html(data.emppos)
-    $("#emp_photo").attr('src', 'http://172.16.0.201:86/' + data.empno + '.jpg')
     if (data.empno !== "") {
         /* if (status == 1) {
             console.table(data)
             status = 2
         } */
+        //$("#emp_photo").attr('src', 'http://172.16.0.201:86/' + data.empno + '.jpg')
         $("#empinfo").fadeIn(1000)
         $("#welcome").hide()
         $("#empdetail").hide()

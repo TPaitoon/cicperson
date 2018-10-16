@@ -273,7 +273,7 @@ app.use(express.static(__dirname + '/public'))
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'))
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'))
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'))
-app.use('/photo', express.static(__dirname + 'http://172.16.0.201:86'))
+//app.use('/photo', express.static(__dirname + 'http://172.16.0.201:86'))
 
 /* Config SerialPort */
 const serialport = new SerialPort(portconnect(1, 3), {
